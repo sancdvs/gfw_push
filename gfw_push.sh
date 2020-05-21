@@ -228,6 +228,7 @@ Test(){
 	Return_status_debug=""
 	status_num_debug=""
 	Test_total=$(echo "${Test_link}"|wc -l)
+	blocked_URL='被墙服务器包括：'
 	for((integer = 1; integer <= ${Test_total}; integer++))
 	do
 		UA_num=$(rand 1 12)
@@ -253,6 +254,7 @@ Test(){
 			[[ "${Detailed_output}" == "1" ]] && echo -e "${Error} 无法连接至 [${now_URL}] 。"
 		fi
 		all_status_num=$(echo $((${all_status_num}+${status_num})))
+		blocked_URL="${blocked_URL}${now_URL}  "
 	done
 }
 crontab_monitor(){
@@ -274,7 +276,7 @@ crontab_monitor(){
 	else
 		sill_new="0"
 		Write_config_now_sill
-		echo -e "${Info} ${DATE} 部分 URL 测试通过！该服务器没有被墙，但可能与大陆链接的线路存在问题。"| tee -a ${LOG_file}
+		echo -e "${Info} ${DATE} 部分 URL 测试通过！该服务器没有被墙，但可能与大陆链接的线路存在问题。${blocked_URL}"| tee -a ${LOG_file}
 	fi
 }
 Init_config(){

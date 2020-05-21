@@ -5,12 +5,12 @@ export PATH
 #=================================================
 #	System Required: CentOS/Debian/Ubuntu
 #	Description: 监测IP是否被墙并推送消息至Telegram
-#	Version: 1.0.5
+#	Version: 1.0.6
 #	Author: Toyo
 #	Blog: https://doub.io/shell-jc8/
 #=================================================
 
-sh_ver="1.0.5"
+sh_ver="1.0.6"
 filepath=$(cd "$(dirname "$0")"; pwd)
 file_1=$(echo -e "${filepath}"|awk -F "$0" '{print $1}')
 Crontab_file="/usr/bin/crontab"
@@ -228,7 +228,7 @@ Test(){
 	Return_status_debug=""
 	status_num_debug=""
 	Test_total=$(echo "${Test_link}"|wc -l)
-	blocked_URL='被墙服务器包括：'
+	off_URL='未连上链接包括：'
 	for((integer = 1; integer <= ${Test_total}; integer++))
 	do
 		UA_num=$(rand 1 12)
@@ -254,7 +254,7 @@ Test(){
 			[[ "${Detailed_output}" == "1" ]] && echo -e "${Error} 无法连接至 [${now_URL}] 。"
 		fi
 		all_status_num=$(echo $((${all_status_num}+${status_num})))
-		blocked_URL="${blocked_URL}${now_URL}  "
+		off_URL="${off_URL}${now_URL}  "
 	done
 }
 crontab_monitor(){
@@ -276,7 +276,7 @@ crontab_monitor(){
 	else
 		sill_new="0"
 		Write_config_now_sill
-		echo -e "${Info} ${DATE} 部分 URL 测试通过！该服务器没有被墙，但可能与大陆链接的线路存在问题。${blocked_URL}"| tee -a ${LOG_file}
+		echo -e "${Info} ${DATE} 部分 URL 测试通过！该服务器没有被墙，但可能与大陆链接的线路存在问题。${off_URL}"| tee -a ${LOG_file}
 	fi
 }
 Init_config(){

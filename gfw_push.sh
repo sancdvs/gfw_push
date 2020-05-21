@@ -228,7 +228,7 @@ Test(){
 	Return_status_debug=""
 	status_num_debug=""
 	Test_total=$(echo "${Test_link}"|wc -l)
-	off_URL='未连上链接包括：'
+	off_URL='未连上的链接包括：'
 	for((integer = 1; integer <= ${Test_total}; integer++))
 	do
 		UA_num=$(rand 1 12)
@@ -252,9 +252,9 @@ Test(){
 			status_num="0"
 			status_num_debug="${status_num_debug} | ${status_num}"
 			[[ "${Detailed_output}" == "1" ]] && echo -e "${Error} 无法连接至 [${now_URL}] 。"
+			off_URL="${off_URL}${now_URL}  "
 		fi
 		all_status_num=$(echo $((${all_status_num}+${status_num})))
-		off_URL="${off_URL}${now_URL}  "
 	done
 }
 crontab_monitor(){

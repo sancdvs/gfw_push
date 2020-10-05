@@ -17,7 +17,7 @@ Crontab_file="/usr/bin/crontab"
 CONF="${file_1}/gfw_push.conf"
 LOG_file="${file_1}/gfw_push.log"
 Test_link="www.189.cn
-www.10010.com
+mall.10010.com
 www.10086.cn"
 Test_UA="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
